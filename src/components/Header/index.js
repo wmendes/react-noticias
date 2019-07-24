@@ -71,6 +71,9 @@ function Header(props) {
         setAnchorEl(null);
     }
 
+    const user = firebase.getCurrentUsername
+    console.log('\nUSER\n')
+    console.log(user)
     //TODO ir buscando enquanto pesquisa é feita...??? 
     if (typeof pesquisa !== 'undefined') {
         console.log('\npesquisando...\n')
@@ -122,10 +125,9 @@ function Header(props) {
                                 open={open}
                                 onClose={handleClose}
                             >
-
-                                (auth? )
                                <MenuItem><Link to="login">Login</Link></MenuItem>
                                 <MenuItem><Link to="registro">Registro</Link></MenuItem>
+                                <MenuItem onClick={handleClose}>Conta</MenuItem>
                                 <MenuItem onClick={handleClose}>Salvos</MenuItem>
                             </Menu>
                         </div>
