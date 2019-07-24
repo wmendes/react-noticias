@@ -1,3 +1,7 @@
+
+/* TODO BUG
+  Caso tenha '-' no titulo, ex.: 'ex-namorada', corta errado
+*/
 export const trataTitulos = (i) => {
     return i.substring(0, i.indexOf('-'))
 }

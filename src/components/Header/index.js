@@ -9,7 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import firebase from '../../firebase'
 
 const useStyles = makeStyles(theme => ({
@@ -23,13 +23,8 @@ const useStyles = makeStyles(theme => ({
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
-        alignSelf: 'center'
+        margin: '0 auto',
+        width: '40%',
     },
     searchIcon: {
         width: theme.spacing(7),
@@ -54,6 +49,10 @@ const useStyles = makeStyles(theme => ({
             },
         },
     },
+    accountBox: {
+        position: 'fixed',
+        right: 0,
+    }
 }));
 
 function Header(props) {
@@ -63,7 +62,7 @@ function Header(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const [pesquisa, setPesquisa] = React.useState()
-  
+
     function handleMenu(event) {
         setAnchorEl(event.currentTarget);
     }
@@ -71,9 +70,9 @@ function Header(props) {
     function handleClose() {
         setAnchorEl(null);
     }
-   
+
     //TODO ir buscando enquanto pesquisa é feita...??? 
-    if(typeof pesquisa !== 'undefined'){
+    if (typeof pesquisa !== 'undefined') {
         console.log('\npesquisando...\n')
         console.log(pesquisa)
     }
@@ -98,7 +97,7 @@ function Header(props) {
                         />
                     </div>
                     {(
-                        <div>
+                        <div className={classes.accountBox}>
                             <IconButton
                                 aria-label="Account of current user"
                                 aria-controls="menu-appbar"
@@ -124,10 +123,10 @@ function Header(props) {
                                 onClose={handleClose}
                             >
 
-                            (auth? )  
+                                (auth? )
                                <MenuItem><Link to="login">Login</Link></MenuItem>
-                              <MenuItem><Link to="registro">Registro</Link></MenuItem>
-                              <MenuItem onClick={handleClose}>Salvos</MenuItem>
+                                <MenuItem><Link to="registro">Registro</Link></MenuItem>
+                                <MenuItem onClick={handleClose}>Salvos</MenuItem>
                             </Menu>
                         </div>
                     )}
