@@ -4,11 +4,12 @@ import 'firebase/firebase-firestore'
 
 const config = {
 	apiKey: "AIzaSyAiNaQMNz07xD4o0A0M_E9e6Vcqs_gnrc8",
-	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-	databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+	authDomain: "react-noticias.firebaseapp.com",
+	databaseURL: "https://react-noticias.firebaseio.com",
 	projectId: "react-noticias",
-	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-	appId: process.env.REACT_APP_FIREBASE_APP_ID,
+	storageBucket: "",
+	messagingSenderId: "577817536773",
+	appId: "1:577817536773:web:d60ab0a552588bf9"
 };
 
 class Firebase {
@@ -39,7 +40,8 @@ class Firebase {
 		})
 	}
 
-	getCurrentUsername() {
+	
+	getCurrentUser() {
 		return this.auth.currentUser && this.auth.currentUser.displayName
 	}
 

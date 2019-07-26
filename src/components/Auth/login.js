@@ -38,16 +38,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// TODO withRouter
 export default function Login(props) {
   const classes = useStyles();
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
-  async function handleLogin() {
+  async function handlerLogin(){
 		try {
-			await firebase.login(email, password)
-			props.history.replace('/')
+      await firebase.login(email, password)
+      console.log(firebase.currentUser)
+		  props.history.replace('/conta')
 		} catch(error) {
 			alert(error.message)
 		}
@@ -100,6 +102,7 @@ export default function Login(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handlerLogin}
           >
             Login
           </Button>

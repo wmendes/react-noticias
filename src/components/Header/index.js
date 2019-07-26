@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -58,10 +58,32 @@ const useStyles = makeStyles(theme => ({
 function Header(props) {
     const classes = useStyles();
 
-    const [auth, setAuth] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [auth, setAuth] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [pesquisa, setPesquisa] = useState()
+
+
     const open = Boolean(anchorEl);
-    const [pesquisa, setPesquisa] = React.useState()
+
+    useEffect(() => {
+        
+       if(firebase.getCurrentUser()){
+           setAuth(true)
+       }
+       
+    }, [])
+
+ 
+    /*  */
+    async function handleLogout() {
+       /*  handleClose() */
+       try {
+        await firebase.logout()
+          } catch(error) {
+              alert(error.message)
+          }
+          props.history.replace('/')
+    }
 
     function handleMenu(event) {
         setAnchorEl(event.currentTarget);
@@ -70,10 +92,7 @@ function Header(props) {
     function handleClose() {
         setAnchorEl(null);
     }
-
-    const user = firebase.getCurrentUsername
-    console.log('\nUSER\n')
-    console.log(user)
+    
     //TODO ir buscando enquanto pesquisa é feita...??? 
     if (typeof pesquisa !== 'undefined') {
         console.log('\npesquisando...\n')
@@ -125,10 +144,18 @@ function Header(props) {
                                 open={open}
                                 onClose={handleClose}
                             >
-                               <MenuItem><Link to="login">Login</Link></MenuItem>
-                                <MenuItem><Link to="registro">Registro</Link></MenuItem>
-                                <MenuItem onClick={handleClose}>Conta</MenuItem>
-                                <MenuItem onClick={handleClose}>Salvos</MenuItem>
+                              { auth ? 
+                                (<div>
+                                <MenuItem onClick={handleClose}><Link to="conta">Conta</Link></MenuItem>
+                                <MenuItem onClick={handleClose}><Link to="conta">Salvos</Link></MenuItem>
+                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                </div>)
+                                :
+                                (<div> 
+                                <MenuItem onClick={handleClose}><Link to="login">Login</Link></MenuItem>
+                                <MenuItem onClick={handleClose}><Link to="registro">Registro</Link></MenuItem>
+                                </div>)
+                              }
                             </Menu>
                         </div>
                     )}

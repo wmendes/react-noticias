@@ -44,10 +44,10 @@ export default function Registro(props) {
 	const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
-  async function handleRegistrar() {
+  const handleRegistrar = async () => {
 		try {
 			await firebase.register(name, email, password)
-			props.history.replace('/')
+			props.history.replace('/conta')
 		} catch(error) {
 			alert(error.message)
 		}

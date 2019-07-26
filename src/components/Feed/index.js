@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import GetNoticias from '../../services'
 import { trataTitulos, trataDatas } from '../../util'
 import Noticia from '../Noticia'
+import firebase from '../../firebase'
 
 function Feed() {
 
     const [noticias, setNoticias] = useState([])
+
+    
 
     useEffect(() => {
         const fetchNoticias = async () => {
