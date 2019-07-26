@@ -3,13 +3,13 @@ import 'firebase/auth'
 import 'firebase/firebase-firestore'
 
 const config = {
-	apiKey: "AIzaSyAiNaQMNz07xD4o0A0M_E9e6Vcqs_gnrc8",
-	authDomain: "react-noticias.firebaseapp.com",
-	databaseURL: "https://react-noticias.firebaseio.com",
-	projectId: "react-noticias",
+	apiKey: process.env.REACT_APP_API_KEY,
+	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+	databaseURL: process.env.REACT_APP_DATABASE_URL,
+	projectId: process.env.REACT_APP_PROJECT_ID,
 	storageBucket: "",
-	messagingSenderId: "577817536773",
-	appId: "1:577817536773:web:d60ab0a552588bf9"
+	messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_APP_ID,
 };
 
 class Firebase {
